@@ -13,6 +13,7 @@
                     <tr style="background-color: rgb(175, 175, 175)">
                         <th>No</th>
                         <th>Title</th>
+                        <th>Category</th>
                         <th>Description</th>
                     </tr>
                 </thead>
@@ -21,13 +22,18 @@
                         <tr>
                             <td>{{ $index + $berita->firstItem() }}</td>
                             <td>{{ $item->title }}</td>
+                            @foreach ($category as $categories)
+                                @if ($categories->id == $item->category_id)
+                                    <td>{{ $categories->name }}</td>
+                                @endif
+                            @endforeach
                             <td>{{ $item->description }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        {{$berita->links()}}
+        {{ $berita->links() }}
     </div>
 
 

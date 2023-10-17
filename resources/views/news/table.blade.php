@@ -11,8 +11,8 @@
                     <tr style="background-color: rgb(175, 175, 175)">
                         <th>No</th>
                         <th>Title</th>
-                        <th>Description</th>
                         <th>Category</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -21,12 +21,12 @@
                         <tr>
                             <td>{{ $index + $berita->firstItem() }}</td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ $item->description }}</td>
                             @foreach ($category as $categories)
                                 @if ($categories->id == $item->category_id)
                                     <td>{{ $categories->name }}</td>
                                 @endif
                             @endforeach
+                            <td>{{ $item->description }}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a href="{{ route('news.edit', $item->id) }}" class="btn text-white"

@@ -24,7 +24,7 @@ class NewsController extends Controller
     {
         $userId = auth()->id();
         $berita = News::where('user_id', $userId)->paginate(3);
-        $category = News::all();
+        $category = Category::all();
         return view('home', ['berita' => $berita, 'category' => $category]);
     }
 
