@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 16, 2023 at 07:23 AM
+-- Generation Time: Oct 17, 2023 at 03:22 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `laravel_cms_news`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Horror', '2023-10-16 12:57:34', '2023-10-17 03:01:32'),
+(10, 'Hukum', '2023-10-16 13:29:08', '2023-10-16 13:29:08'),
+(11, 'Berita', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(12, 'Pengumuman', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(13, 'Acara', '2023-10-17 02:53:46', '2023-10-17 03:18:23'),
+(14, 'Lowongan Pekerjaan', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(15, 'Pengadaan Barang dan Jasa', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(16, 'Pengadaan Tanah', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(17, 'Pengadaan Gedung', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(18, 'Polisi', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(19, 'Pengadaan Kendaraan', '2023-10-17 02:53:46', '2023-10-17 02:53:46'),
+(20, 'Berita', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(21, 'Pengumuman', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(22, 'Acara', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(23, 'Lowongan Pekerjaan', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(24, 'Pengadaan Barang dan Jasa', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(25, 'Pengadaan Tanah', '2023-10-17 02:53:52', '2023-10-17 02:53:52'),
+(26, 'Pengadaan Gedung', '2023-10-17 02:53:52', '2023-10-17 02:53:52');
 
 -- --------------------------------------------------------
 
@@ -59,7 +96,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2014_10_12_100000_create_password_resets_table', 1),
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(6, '2023_10_15_140743_create_news_table', 1);
+(6, '2023_10_15_140743_create_news_table', 1),
+(7, '2023_10_16_192323_create_categories_table', 2),
+(8, '2023_10_16_191841_update_news_table', 3);
 
 -- --------------------------------------------------------
 
@@ -69,8 +108,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `news` (
   `id` bigint UNSIGNED NOT NULL,
+  `category_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -80,13 +120,9 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `user_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(14, 9, 'berita news 1', 'news news news news news news news news news news 1', '2023-10-15 23:55:08', '2023-10-15 23:55:19'),
-(15, 9, 'berita news 2', 'news news news news news news news news news news 2', '2023-10-15 23:56:44', '2023-10-15 23:56:44'),
-(16, 9, 'berita news 3', 'news news news news news news news news news news 3', '2023-10-16 06:58:27', '2023-10-16 06:58:27'),
-(17, 9, 'Berita News 4', 'news news news news news news news news news news 4', '2023-10-16 06:59:42', '2023-10-16 06:59:42'),
-(18, 10, 'berita news user 1', 'news news news news news news news news news news user 1', '2023-10-16 07:16:51', '2023-10-16 07:16:51'),
-(19, 10, 'news user 2', 'news news news news news news news news news news user 2', '2023-10-16 07:16:59', '2023-10-16 07:17:28');
+INSERT INTO `news` (`id`, `category_id`, `user_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(21, 1, 1, 'news news 12', 'news news news news news news news news news news news 1', '2023-10-16 13:22:32', '2023-10-17 03:18:03'),
+(22, 10, 1, 'Tumpul ke Atas Tajam ke Bawah, Apakah itu?', 'hukum hukum hukum hukum hukum hukum hukum hukum hukum hukum hukum hukum hukum hukum', '2023-10-16 13:35:33', '2023-10-16 13:35:33');
 
 -- --------------------------------------------------------
 
@@ -153,12 +189,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(9, 'admin', 'admin@gmail.com', NULL, '$2y$10$3UomKmRqWazud0ot1Bn.9.ftBMi/ekt/QCa3keoHbcnuDTWLneTbe', 'HXhiVgl0TN4Q6kYbEUGBjT3DMCpyhrrvdP8t1JEV6xVcqSCguc5EvHIUQNvQ', '2023-10-15 23:54:16', '2023-10-15 23:54:16'),
-(10, 'user', 'user@gmail.com', NULL, '$2y$10$x3Kdapl2i3Zw1IA5jx1nYuHfp0UGsqtb3gedyatvlOZ5hFCidBr6O', NULL, '2023-10-16 07:14:23', '2023-10-16 07:14:23');
+(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$lSS6Dms0RoCv8P4YNX10n.H9t5Wf4KeMWMazYegxVYQDYvkLD9s9.', NULL, '2023-10-16 12:42:05', '2023-10-16 12:42:05');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -178,7 +219,8 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `news_user_id_foreign` (`user_id`);
+  ADD KEY `news_user_id_foreign` (`user_id`),
+  ADD KEY `news_category_id_foreign` (`category_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -212,6 +254,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -221,13 +269,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -239,7 +287,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -249,6 +297,7 @@ ALTER TABLE `users`
 -- Constraints for table `news`
 --
 ALTER TABLE `news`
+  ADD CONSTRAINT `news_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `news_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
