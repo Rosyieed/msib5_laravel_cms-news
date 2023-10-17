@@ -17,6 +17,15 @@
                             placeholder="Masukkan judul berita" value="{{ $berita->title }}">
                     </div>
                     <div class="form-group">
+                        <label for="category_id">Category:</label>
+                        <select name="category_id" id="category_id" class="form-control"
+                            placeholder="Masukkan category berita" required>
+                            @foreach ($category as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="description">Deskripsi Berita:</label>
                         <textarea name="description" id="description" class="form-control" placeholder="Masukkan deskripsi berita">{{ $berita->description }}</textarea>
                     </div>

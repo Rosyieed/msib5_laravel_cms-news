@@ -81,7 +81,8 @@ class NewsController extends Controller
     public function edit(string $id)
     {
         $berita = News::find($id);
-        return view('news.edit', compact('berita'));
+        $category = Category::all();
+        return view('news.edit', compact('berita', 'category'));
     }
 
     /**
@@ -92,6 +93,7 @@ class NewsController extends Controller
         $berita = News::find($id);
         $berita->title = $request->title;
         $berita->description = $request->description;
+        $berita->category_id = $request->category_id;
         $berita->save();
 
         return redirect()->route('news.table')->with('success', 'Berita berhasil diupdate');
