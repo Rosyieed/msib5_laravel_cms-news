@@ -22,7 +22,7 @@ class NewsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:5|max:20',
+            'title' => 'required|min:5|max:100',
             'description' => 'required|min:10|max:1000'
         ];
     }

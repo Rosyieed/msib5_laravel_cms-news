@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('category', App\Http\Controllers\CategoryController::class);
+
 Route::get('/home', [App\Http\Controllers\NewsController::class, 'index'])->name('home');
 Route::get('/home/create', [App\Http\Controllers\NewsController::class, 'create'])->name('news.create');
 Route::get('/home/table', [App\Http\Controllers\NewsController::class, 'table'])->name('news.table');
@@ -28,3 +30,4 @@ Route::get('/home/edit/{id}', [App\Http\Controllers\NewsController::class, 'edit
 Route::post('/home/store', [App\Http\Controllers\NewsController::class, 'store'])->name('news.store');
 Route::post('/home/update/{id}', [App\Http\Controllers\NewsController::class, 'update'])->name('news.update');
 Route::delete('/home/delete/{id}', [App\Http\Controllers\NewsController::class, 'destroy'])->name('news.delete');
+

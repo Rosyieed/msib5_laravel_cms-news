@@ -15,10 +15,12 @@ class News extends Model
     protected $fillable=[
         'title',
         'description',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
 
     public function news(){
         return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class);
     }
 }

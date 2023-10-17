@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsRequest;
+use App\Models\Category;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class NewsController extends Controller
@@ -23,7 +24,8 @@ class NewsController extends Controller
     {
         $userId = auth()->id();
         $berita = News::where('user_id', $userId)->paginate(3);
-        return view('home', ['berita' => $berita]);
+        $category = News::all();
+        return view('home', ['berita' => $berita, 'category' => $category]);
     }
 
     /**
@@ -31,18 +33,20 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        Category::all();
+        return view('news.create', ['category' => Category::all()]);
     }
 
     public function table()
     {
         $userId = auth()->id();
         $berita = News::where('user_id', $userId)->paginate(3);
+        $category = Category::all();
 
-        $title = 'Delete Book!';
+        $title = 'Delete News!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
-        return view('news.table', ['berita' => $berita]);
+        return view('news.table', ['berita' => $berita, 'category' => $category]);
     }
 
     /**
@@ -50,10 +54,14 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
+        // Category::create([
+        //     'name' => $request->category
+        // ]);
         News::create([
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->route('news.create')->with('success', 'Berita berhasil ditambahkan');

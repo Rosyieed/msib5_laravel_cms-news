@@ -1,40 +1,31 @@
 @extends('layouts.main')
-@section('title', 'News Table')
+@section('title', 'Category Table')
 
 @section('content')
     <div class="container p-3 rounded" style="background-color:white">
-        <h1>News Table</h1>
+        <h1>Category Table</h1>
         <hr>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr style="background-color: rgb(175, 175, 175)">
                         <th>No</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
+                        <th>Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($berita as $index => $item)
+                    @foreach ($category as $index => $item)
                         <tr>
-                            <td>{{ $index + $berita->firstItem() }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->description }}</td>
-                            @foreach ($category as $categories)
-                                @if ($categories->id == $item->category_id)
-                                    <td>{{ $categories->name }}</td>
-                                @endif
-                            @endforeach
+                            <td>{{$index + $category->firstItem() }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('news.edit', $item->id) }}" class="btn text-white"
+                                    <a href="{{ route('category.edit', $item->id) }}" class="btn text-white"
                                         style="background-color: rgb(49, 211, 0)"><i class="bi bi-subtract me-2"></i>
                                         Edit</a>
-                                    <a href="{{ route('news.delete', $item->id) }}" class="btn btn-danger"
+                                    <a href="{{ route('category.destroy', $item->id) }}" class="btn btn-danger"
                                         data-confirm-delete="true"><i class="bi bi-trash me-2"></i> Delete</a>
-
                                 </div>
                             </td>
                         </tr>
@@ -42,6 +33,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $berita->links() }}
+        {{ $category->links() }}
     </div>
 @endsection

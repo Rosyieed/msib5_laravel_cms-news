@@ -6,7 +6,7 @@
     <div class="container p-3">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create News</h3>
+                <h3 class="card-title">Edit News</h3>
             </div>
             <form action="{{ route('news.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
